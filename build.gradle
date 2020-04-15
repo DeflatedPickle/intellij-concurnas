@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.41'
+    id 'antlr'
+    id 'org.jetbrains.intellij' version '0.4.15'
+    id 'com.diffplug.gradle.spotless' version '3.27.0'
+}
+
+group 'com.deflatedpickle'
+version '1.0.0'
+sourceCompatibility = 1.8
+
+sourceSets {
+    main.java.srcDirs += "src/main/gen"
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+    
+    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.41"
+
+    antlr "org.antlr:antlr4:4.7.2"
+    implementation "org.antlr:antlr4-intellij-adaptor:0.1"
+}
+
+generateGrammarSource {
+    outputDirectory = file("src/main/gen/com/concurnas/compiler")
+
+    arguments += [
+            "-no-listener",
+            "-package", "com.deflatedpickle.red",
+            "com/deflatedpickle/red/RedLexer.g4", "com/deflatedpickle/red/RedParser.g4"
+    ]
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+intellij {
+    version '2019.1'
+}
+
+patchPluginXml {
+}
+
+spotless {
+    kotlin {
+        ktlint()
+
+        licenseHeader '/* Copyright (c) $YEAR DeflatedPickle under the MIT license */\n\n'
+    }
+}

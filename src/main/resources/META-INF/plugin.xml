@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.deflatedpickle.intellij.concurnas</id>
+    <name>Concurnas Language Support</name>
+    <version>0.0.1</version>
+    <vendor>DeflatedPickle</vendor>
+
+    <description><![CDATA[
+      A plugin to add support for the Concurnas language.
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="183.0"/>
+
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.deflatedpickle.intellij.concurnas.file.ConcurnasFileTypeFactory"/>
+    </extensions>
+
+    <actions>
+    </actions>
+</idea-plugin>
