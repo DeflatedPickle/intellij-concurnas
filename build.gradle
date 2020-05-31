@@ -34,8 +34,7 @@ generateGrammarSource {
 
     arguments += [
             "-no-listener",
-            "-package", "com.deflatedpickle.red",
-            "com/deflatedpickle/red/RedLexer.g4", "com/deflatedpickle/red/RedParser.g4"
+            "com/concurnas/compiler/Concurnas.g4"
     ]
 }
 
