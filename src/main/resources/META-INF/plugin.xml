@@ -16,6 +16,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="com.deflatedpickle.intellij.concurnas.file.ConcurnasFileTypeFactory"/>
         <facetType implementation="com.deflatedpickle.intellij.concurnas.facet.ConcurnasFacetType"/>
+        <configurationType implementation="com.deflatedpickle.intellij.concurnas.configuration.ConcurnasRunConfigurationType"/>
     </extensions>
 
     <actions>
