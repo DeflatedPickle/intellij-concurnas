@@ -15,6 +15,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="com.deflatedpickle.intellij.concurnas.file.ConcurnasFileTypeFactory"/>
+
+        <lang.parserDefinition language="Concurnas" implementationClass="com.deflatedpickle.intellij.concurnas.parser.ConcurnasParserDefinition"/>
+        <lang.ast.factory language="Concurnas" implementationClass="com.deflatedpickle.intellij.concurnas.ast.ConcurnasASTFactory"/>
+
+        <lang.syntaxHighlighterFactory language="Concurnas" implementationClass="com.deflatedpickle.intellij.concurnas.syntax.highlight.ConcurnasSyntaxHighlighterFactory"/>
+
         <facetType implementation="com.deflatedpickle.intellij.concurnas.facet.ConcurnasFacetType"/>
         <configurationType implementation="com.deflatedpickle.intellij.concurnas.configuration.ConcurnasRunConfigurationType"/>
     </extensions>
