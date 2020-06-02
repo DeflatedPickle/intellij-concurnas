@@ -1,0 +1,3 @@
+[submodule "src/main/antlr/com/concurnas/compiler/antlr-concurnas"]
+	path = src/main/antlr/com/concurnas/compiler/antlr-concurnas
+	url = https://github.com/DeflatedPickle/antlr-concurnas.git

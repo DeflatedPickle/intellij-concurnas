@@ -34,7 +34,7 @@ generateGrammarSource {
 
     arguments += [
             "-no-listener",
-            "com/concurnas/compiler/Concurnas.g4"
+            "com/concurnas/compiler/antlr-concurnas/Concurnas.g4"
     ]
 }
 
