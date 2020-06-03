@@ -27,5 +27,5 @@ class ConcurnasPSIFileRoot(viewProvider: FileViewProvider) : PsiFileBase(
         )
     }
 
-    override fun toString(): String = "Concurnas Language file"
+    override fun toString(): String = "Concurnas Language"
 }
