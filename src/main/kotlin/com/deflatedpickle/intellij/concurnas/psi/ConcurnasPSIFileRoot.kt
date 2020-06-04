@@ -3,6 +3,7 @@ package com.deflatedpickle.intellij.concurnas.psi
 import com.deflatedpickle.intellij.concurnas.ConcurnasIcons
 import com.deflatedpickle.intellij.concurnas.ConcurnasLanguage
 import com.deflatedpickle.intellij.concurnas.file.ConcurnasFileType
+import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSICallSubtree
 import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.psi.FileViewProvider
@@ -20,11 +21,18 @@ class ConcurnasPSIFileRoot(viewProvider: FileViewProvider) : PsiFileBase(
 
     override fun getContext(): ScopeNode? = null
 
-    override fun resolve(element: PsiNamedElement?): PsiElement? {
-        return SymtabUtils.resolve(
-                this, ConcurnasLanguage,
-                element, "/script/vardef/ID"
-        )
+    override fun resolve(element: PsiNamedElement): PsiElement? {
+        return if (element.parent is ConcurnasPSICallSubtree) {
+            SymtabUtils.resolve(
+                    this, ConcurnasLanguage,
+                    element, "/script/function/ID"
+            )
+        } else {
+            SymtabUtils.resolve(
+                    this, ConcurnasLanguage,
+                    element, "/script/vardef/ID"
+            )
+        }
     }
 
     override fun toString(): String = "Concurnas Language"

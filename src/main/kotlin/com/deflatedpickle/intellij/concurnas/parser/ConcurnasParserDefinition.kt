@@ -3,7 +3,12 @@ package com.deflatedpickle.intellij.concurnas.parser
 import com.concurnas.compiler.ConcurnasLexer
 import com.concurnas.compiler.ConcurnasParser
 import com.deflatedpickle.intellij.concurnas.ConcurnasLanguage
+import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSICallSubtree
 import com.deflatedpickle.intellij.concurnas.psi.ConcurnasPSIFileRoot
+import com.deflatedpickle.intellij.concurnas.psi.node.scope.ConcurnasPSIBlockSubtree
+import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIArgdefSubtree
+import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIFunctionSubtree
+import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIVardefSubtree
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.lang.PsiParser
@@ -98,13 +103,22 @@ class ConcurnasParserDefinition : ParserDefinition {
             ConcurnasPSIFileRoot(viewProvider)
 
     override fun createElement(node: ASTNode): PsiElement {
-        return if (node.elementType is TokenIElementType ||
-                node.elementType !is RuleIElementType) {
-            ANTLRPsiNode(node)
-        } else {
-            when ((node.elementType as RuleIElementType).ruleIndex) {
-                else -> ANTLRPsiNode(node)
-            }
+        val elType = node.elementType
+        if (elType is TokenIElementType) {
+            return ANTLRPsiNode(node)
+        }
+        if (elType !is RuleIElementType) {
+            return ANTLRPsiNode(node)
+        }
+
+        return when (elType.ruleIndex) {
+            ConcurnasParser.RULE_funcdef -> ConcurnasPSIFunctionSubtree(node, elType)
+            ConcurnasParser.RULE_pureFuncInvokeArgs -> ConcurnasPSIArgdefSubtree(node, elType)
+            ConcurnasParser.RULE_block -> ConcurnasPSIBlockSubtree(node)
+            ConcurnasParser.RULE_expr_stmt,
+            ConcurnasParser.RULE_expr_stmt_BelowDot -> ConcurnasPSICallSubtree(node)
+            ConcurnasParser.RULE_assignment -> ConcurnasPSIVardefSubtree(node, elType)
+            else -> ANTLRPsiNode(node)
         }
     }
 }
