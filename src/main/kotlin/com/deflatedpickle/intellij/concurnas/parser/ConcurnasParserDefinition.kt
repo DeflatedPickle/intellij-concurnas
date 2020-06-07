@@ -3,9 +3,10 @@ package com.deflatedpickle.intellij.concurnas.parser
 import com.concurnas.compiler.ConcurnasLexer
 import com.concurnas.compiler.ConcurnasParser
 import com.deflatedpickle.intellij.concurnas.ConcurnasLanguage
-import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSICallSubtree
+import com.deflatedpickle.intellij.concurnas.ConcurnasTokenTypes
 import com.deflatedpickle.intellij.concurnas.psi.ConcurnasPSIFileRoot
-import com.deflatedpickle.intellij.concurnas.psi.node.scope.ConcurnasPSIBlockSubtree
+import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSIBlockSubtree
+import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSICallSubtree
 import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIArgdefSubtree
 import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIFunctionSubtree
 import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIVardefSubtree
@@ -29,6 +30,8 @@ import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode
 import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.tree.ParseTree
+import org.intellij.lang.annotations.MagicConstant
+
 
 class ConcurnasParserDefinition : ParserDefinition {
     companion object {
@@ -42,10 +45,7 @@ class ConcurnasParserDefinition : ParserDefinition {
                     ConcurnasParser.tokenNames, ConcurnasParser.ruleNames
             )
 
-            val tokenIElementTypes = PSIElementTypeFactory.getTokenIElementTypes(
-                    ConcurnasLanguage
-            )
-            NAME = tokenIElementTypes[ConcurnasLexer.NAME]
+            NAME = ConcurnasTokenTypes.getTokenElementType(ConcurnasLexer.NAME)
         }
 
         val COMMENTS: TokenSet = createTokenSet(
@@ -57,7 +57,8 @@ class ConcurnasParserDefinition : ParserDefinition {
         val WHITESPACE: TokenSet = createTokenSet(
                 ConcurnasLanguage,
                 ConcurnasLexer.WS,
-                ConcurnasLexer.WS2
+                ConcurnasLexer.WS2,
+                ConcurnasLexer.NEWLINE
         )
 
         val STRING: TokenSet = createTokenSet(

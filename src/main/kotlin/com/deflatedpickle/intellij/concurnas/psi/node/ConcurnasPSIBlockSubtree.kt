@@ -1,4 +1,4 @@
-package com.deflatedpickle.intellij.concurnas.psi.node.scope
+package com.deflatedpickle.intellij.concurnas.psi.node
 
 import com.deflatedpickle.intellij.concurnas.ConcurnasLanguage
 import com.intellij.lang.ASTNode

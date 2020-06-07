@@ -6,8 +6,8 @@ import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 
 object ConcurnasFileType : LanguageFileType(ConcurnasLanguage) {
-    override fun getName(): String = "Concurnas file"
-    override fun getDescription(): String = "Concurnas language file"
+    override fun getName(): String = "Concurnas"
+    override fun getDescription(): String = "Concurnas language"
     override fun getDefaultExtension(): String = "conc"
     override fun getIcon(): Icon? = ConcurnasIcons.CONCURNAS
 }

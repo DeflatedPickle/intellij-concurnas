@@ -24,11 +24,19 @@
         <lang.syntaxHighlighterFactory language="Concurnas"
                                        implementationClass="com.deflatedpickle.intellij.concurnas.syntax.highlight.ConcurnasSyntaxHighlighterFactory"/>
 
-        <facetType implementation="com.deflatedpickle.intellij.concurnas.facet.ConcurnasFacetType"/>
-        <configurationType implementation="com.deflatedpickle.intellij.concurnas.configuration.ConcurnasRunConfigurationType"/>
+        <facetType
+                implementation="com.deflatedpickle.intellij.concurnas.facet.ConcurnasFacetType"/>
+        <configurationType
+                implementation="com.deflatedpickle.intellij.concurnas.configuration.ConcurnasRunConfigurationType"/>
 
-        <lang.psiStructureViewFactory language="Concurnas"
-                                      implementationClass="com.deflatedpickle.intellij.concurnas.structureview.ConcurnasStructureViewFactory"/>
+        <!-- <lang.psiStructureViewFactory language="Concurnas"
+                                      implementationClass="com.deflatedpickle.intellij.concurnas.structureview.ConcurnasStructureViewFactory"/> -->
+
+        <completion.contributor language="Concurnas"
+                                implementationClass="com.deflatedpickle.intellij.concurnas.completion.ConcurnasKeywordCompletionContributor"/>
+
+        <lang.braceMatcher language="Concurnas"
+                           implementationClass="com.deflatedpickle.intellij.concurnas.matcher.ConcurnasBraceMatcher"/>
     </extensions>
 
     <actions>
