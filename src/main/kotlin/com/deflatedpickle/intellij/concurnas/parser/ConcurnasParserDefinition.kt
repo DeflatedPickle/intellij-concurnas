@@ -8,6 +8,7 @@ import com.deflatedpickle.intellij.concurnas.psi.ConcurnasPSIFileRoot
 import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSIBlockSubtree
 import com.deflatedpickle.intellij.concurnas.psi.node.ConcurnasPSICallSubtree
 import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIArgdefSubtree
+import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIClassSubtree
 import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIFunctionSubtree
 import com.deflatedpickle.intellij.concurnas.psi.subtree.ConcurnasPSIVardefSubtree
 import com.intellij.lang.ASTNode
@@ -114,6 +115,7 @@ class ConcurnasParserDefinition : ParserDefinition {
 
         return when (elType.ruleIndex) {
             ConcurnasParser.RULE_funcdef -> ConcurnasPSIFunctionSubtree(node, elType)
+            ConcurnasParser.RULE_classdef -> ConcurnasPSIClassSubtree(node, elType)
             ConcurnasParser.RULE_pureFuncInvokeArgs -> ConcurnasPSIArgdefSubtree(node, elType)
             ConcurnasParser.RULE_block -> ConcurnasPSIBlockSubtree(node)
             ConcurnasParser.RULE_expr_stmt,

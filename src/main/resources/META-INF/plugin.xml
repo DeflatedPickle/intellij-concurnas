@@ -18,28 +18,36 @@
 
         <lang.parserDefinition language="Concurnas"
                                implementationClass="com.deflatedpickle.intellij.concurnas.parser.ConcurnasParserDefinition"/>
+
         <lang.ast.factory language="Concurnas"
                           implementationClass="com.deflatedpickle.intellij.concurnas.ast.ConcurnasASTFactory"/>
 
         <lang.syntaxHighlighterFactory language="Concurnas"
                                        implementationClass="com.deflatedpickle.intellij.concurnas.syntax.highlight.ConcurnasSyntaxHighlighterFactory"/>
 
-        <facetType
-                implementation="com.deflatedpickle.intellij.concurnas.facet.ConcurnasFacetType"/>
-        <configurationType
-                implementation="com.deflatedpickle.intellij.concurnas.configuration.ConcurnasRunConfigurationType"/>
-
-        <!-- <lang.psiStructureViewFactory language="Concurnas"
-                                      implementationClass="com.deflatedpickle.intellij.concurnas.structureview.ConcurnasStructureViewFactory"/> -->
-
-        <completion.contributor language="Concurnas"
-                                implementationClass="com.deflatedpickle.intellij.concurnas.completion.ConcurnasKeywordCompletionContributor"/>
-
         <lang.braceMatcher language="Concurnas"
                            implementationClass="com.deflatedpickle.intellij.concurnas.matcher.ConcurnasBraceMatcher"/>
 
         <lang.foldingBuilder language="Concurnas"
                              implementationClass="com.deflatedpickle.intellij.concurnas.folding.ConcurnasFoldingBuilder"/>
+
+        <lang.commenter language="Concurnas"
+                        implementationClass="com.deflatedpickle.intellij.concurnas.commenter.ConcurnasCommenter"/>
+
+        <!-- <lang.psiStructureViewFactory language="Concurnas"
+                                      implementationClass="com.deflatedpickle.intellij.concurnas.structureview.ConcurnasStructureViewFactory"/> -->
+
+        <facetType
+                implementation="com.deflatedpickle.intellij.concurnas.facet.ConcurnasFacetType"/>
+
+        <configurationType
+                implementation="com.deflatedpickle.intellij.concurnas.configuration.ConcurnasRunConfigurationType"/>
+
+        <completion.contributor language="Concurnas"
+                                implementationClass="com.deflatedpickle.intellij.concurnas.completion.ConcurnasKeywordCompletionContributor"/>
+
+        <codeInsight.lineMarkerProvider language="Concurnas"
+                                        implementationClass="com.deflatedpickle.intellij.concurnas.gutter.ConcurnasLineMarkerProvider" />
     </extensions>
 
     <actions>
